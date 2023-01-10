@@ -1,0 +1,419 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.root_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 100vw;
+  height: 100%;
+}
+
+.App::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-image: url('./assets/blackbg.jpg');
+  background-position: top center;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: -2;
+}
+
+.App::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -50px;
+  width: 100vw;
+  height: 100%;
+  background-image: url('./assets/lighting.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  z-index: -1;
+}
+
+.page_container {
+  margin-top: 3rem;
+}
+
+/* Navbar */
+
+.home_navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 300px;
+  list-style: none;
+  z-index: 10;
+  position: relative;
+}
+
+.searchbar_container {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.route_links {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.links * {
+  color: rgb(223, 235, 247);
+  cursor: pointer;
+}
+
+.route_links *:hover {
+  color: rgb(223, 235, 247);
+  filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.5));
+}
+
+.route_links ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: max(20vw, 200px);
+}
+
+.liked_page{
+  width: 100vw;
+  height: 100vh;
+}
+
+.liked_page .route_links {
+  display: none;
+}
+
+.home_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_link h1 {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 240px;
+  color: whitesmoke;
+  transition: all 0.3 ease-in-out;
+}
+
+.home_link h1 i {
+  position: absolute;
+  left: 0;
+  bottom: -50%;
+  font-size: 1.5em;
+  color: whitesmoke;
+  animation: logoRotation 3s cubic-bezier(.35,1.49,.85,.95) infinite both;
+}
+
+@keyframes logoRotation {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.home_link i::after {
+  content: "G";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-65%);
+  font-style: normal;
+  font-size: 30px;
+  background-color: #242424;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.selectUI {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  transform: translateX(-28%);
+  transition: all 0.3s ease-in-out;
+}
+
+.selectUI.onLiked {
+  left: 0;
+  transform: translateX(max(11vw, 100px));
+  transition: all 0.3s ease-in-out;
+}
+
+.selectUI.onLiked div {
+  width: max(12vw, 110px);
+  height: 3px;
+  background: linear-gradient(90deg, rgba(184, 246, 255, 0) 0%, #7DEFFF 48.24%, rgba(255, 255, 255, 0) 100%);
+}
+
+.selectUI div {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(184, 246, 255, 0) 0%, #7DEFFF 48.24%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Searchbar */
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  margin-top: 4rem;
+  margin-right: 2rem;
+}
+
+
+.home_link h1::before {
+  content: "Free image database";
+  position: absolute;
+  bottom: -20%;
+  left: 93%;
+  transform: translateX(-50%);
+  width: 100%;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.searchbar_form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: solid #fff 1px;
+  border-radius: 15px;
+  height: 40px;
+  width: max(30vw, 320px);
+  position: relative;
+}
+
+.searchbar_form input {
+  height: 40px;
+  width: 90%;
+  background-color: transparent;
+  padding-left: 2rem;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.searchbar_form button {
+  background-color: whitesmoke;
+  color: #131313;
+  position: absolute;
+  right: -40px;
+}
+
+
+/* Images */
+
+
+.images_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 8;
+}
+
+.liked_page .images_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  margin: 2rem;
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.photo_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.photo_container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: saturate(10%);
+  transition: all 0.2s ease-in-out;
+}
+
+.photo_handle {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 25%;
+  background-color: rgba(0,0,0,0.4);
+  padding: 0px 1.5rem;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+.likes_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.likes {
+  font-size: 1.5em;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.liked {
+  font-size: 1.5em;
+  margin-right: 5px;
+  cursor: pointer;
+  color: red;
+  stroke-width: 5px;
+  -webkit-text-stroke-color: #fff;
+}
+
+.download {
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.photo_container:hover {
+  transform: scale(110%);
+  transition: all 0.2s ease-in-out;
+}
+
+.photo_container:hover img {
+  filter: saturate(100%);
+  transition: all 0.2s ease-in-out;
+}
+
+.photo_container:hover .photo_handle {
+  transform: translateY(0%);
+  transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  .photo_container {
+    width: 250px;
+    height: 250px;
+    margin: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .photo_handle {
+    transform: scale(90%) translateY(100%);
+  }
+
+  .photo_container:hover {
+    transform: scale(90%);
+  }
+
+  .photo_container:hover .photo_handle {
+    transform: scale(90%) translateY(0%);
+  }
+}
+
+@media screen and (max-width: 620px) {
+
+  .searchbar_form {
+    transform: scale(80%);
+  }
+
+  .home_link h1 {
+    transform: scale(80%);
+    transition: all 0.3 ease-in-out;
+  }
+
+  .photo_container {
+    width: 200px;
+    height: 200px;
+    margin: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .photo_container:hover {
+    transform: scale(115%);
+  }
+
+  .photo_handle  {
+    transform: scale(70%) translateY(100%);
+  }
+
+  .photo_container:hover .photo_handle {
+    transform: scale(70%) translateY(20%);
+  }
+}
